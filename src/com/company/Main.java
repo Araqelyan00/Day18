@@ -1,12 +1,12 @@
 package com.company;
 import com.company.model.PersonModel;
-import com.company.validator.PersonValidator;
+import com.company.model.TriangleModel;;
 import java.util.Scanner;
-
 import static com.company.validator.PersonValidator.*;
+import static com.company.validator.TriangleValidator.*;
 
 public class Main {
-
+// Task - 1, 2:
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 	//
@@ -74,5 +74,51 @@ public class Main {
 
         PersonModel person1 = new PersonModel(firstName, lastName, passportID, age, gender, nationality);
         person1.display();
+
+//  Task - 3:
+    int sizeA;
+    int sizeB;
+    int sizeC;
+
+    while (true){
+        System.out.println("Enter triangle sideA in range from 1 to 20.");
+        sizeA = scanner.nextInt();
+        if (isValidSide(sizeA)) {
+            break;
+        } else {
+            System.out.println("Try again.");
+        }
+    }
+
+        while (true){
+            System.out.println("Enter triangle sideB in range from 1 to 20.");
+            sizeB = scanner.nextInt();
+            if (isValidSide(sizeB)) {
+                break;
+            } else {
+                System.out.println("Try again.");
+            }
+        }
+
+        while (true){
+            System.out.println("Enter triangle sideC in range from 1 to 20.");
+            sizeC = scanner.nextInt();
+            if (isValidSide(sizeC)) {
+                break;
+            } else {
+                System.out.println("Try again.");
+            }
+        }
+        TriangleModel triangle = new TriangleModel(sizeA, sizeB, sizeC);
+        if (!checkTriangle(triangle)){
+            System.out.println("Is not Valid.");
+            return;
+        }
+
+        if (isRightTriangle(triangle)){
+            System.out.println("Your triangle is right triangle.");
+        }
+        System.out.println("Area of your triangle = " + triangle.area());
+
     }
 }
